@@ -1,0 +1,25 @@
+<h1>Recipe</h1>
+
+<h2>Title: <%= @recipe.title %></h2>
+<h5>Updated on: <%= @recipe.friendly_updated_at %></h5>
+<h3>Chef: <%= @recipe.chef %></h3>
+<h5><%= @recipe.prep_time %></h5>
+<h3>Ingredients:</h3>
+  <ul>
+   <% @recipe.ingredients_list.each do |ingredient| %>   
+    <li><%= ingredient %></li> 
+   <% end %>
+  </ul>
+
+<h3>Directions:</h3>
+<ol>
+  <% @recipe.directions.split(", ").each do |direction| %>
+  <li><%= direction %></li>
+  <% end %>
+</ol>
+
+<a href="/recipes/<%= @recipe.id %>/edit" class="btn btn-warning">Edit Recipe</a>
+
+<a href="/recipe/<%= @recipe.id %>" data-method="delete" class="btn btn-danger">Delete Recipe</a>
+
+<%= link_to "Delete Recipe", "/recipes/#{@recipe.id}", method: :delete, class: "btn btn-warning" %>
